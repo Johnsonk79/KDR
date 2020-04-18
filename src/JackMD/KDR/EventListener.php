@@ -69,13 +69,16 @@ class EventListener implements Listener{
 	public function onPlayerKill(PlayerDeathEvent $event){
 		$player = $event->getPlayer();
 		if($player instanceof Player){
+			if(in_array($player->getLevel()->getFolderName(), $this->getConfig()->get("worlds"))){
 			$this->plugin->getProvider()->addDeathPoints($player, (int) $this->plugin->getConfig()->get("death-points"));
+		}
 		}
 		$cause = $player->getLastDamageCause();
 		if($cause instanceof EntityDamageByEntityEvent){
 			$damager = $cause->getDamager();
 			if($damager instanceof Player){
-				if(in_array($player->getLevel()->getFolderName(), $this->getConfig()->get("worlds"))){
+				if(in_array($event->getPlayer()->getLevel()->getFolderName(), $this->getConfig()->get("worlds"))){
+					
 				$this->plugin->getProvider()->addKillPoints($damager, (int) $this->plugin->getConfig()->get("kill-points"));
 			}
 			}
