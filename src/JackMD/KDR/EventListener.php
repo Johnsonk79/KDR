@@ -38,6 +38,9 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerDeathEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\Player;
+use pocketmine\plugin\PluginBase;
+
+use pocketmine\entity\{Effect,EffectInstance};
 
 class EventListener implements Listener{
 
@@ -78,7 +81,9 @@ class EventListener implements Listener{
 			$damager = $cause->getDamager();
 			if($damager instanceof Player){
 				if(in_array($event->getPlayer()->getLevel()->getFolderName(), $this->getConfig()->get("worlds"))){
-					
+				$damager->addEffect(new EffectInstance(Effect::getEffect(Effect::REGENERATION), 50, 2, true));
+                                $damager->addEffect(new EffectInstance(Effect::getEffect(Effect::STRENGTH), 30, 1, true));
+                                $event->setDeathMessage(str_replace(["{player}", "{killer}"], [$event->getPlayer()->getName(), $damager->getName()], $this->getConfig()->get("death-message")));					
 				$this->plugin->getProvider()->addKillPoints($damager, (int) $this->plugin->getConfig()->get("kill-points"));
 			}
 			}
