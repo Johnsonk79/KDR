@@ -47,4 +47,7 @@ kill-points: 1
 # worlds that KDR will work in
 worlds:
  - pvp
+ 
+ # Message sent to the killed player, {player} = name of player, {killer} = name of killer.
+death-message: §fYou were slain by §c{killer}
 ...
