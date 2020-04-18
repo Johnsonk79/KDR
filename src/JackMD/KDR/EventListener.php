@@ -75,7 +75,9 @@ class EventListener implements Listener{
 		if($cause instanceof EntityDamageByEntityEvent){
 			$damager = $cause->getDamager();
 			if($damager instanceof Player){
+				if(in_array($player->getLevel()->getFolderName(), $this->getConfig()->get("worlds"))){
 				$this->plugin->getProvider()->addKillPoints($damager, (int) $this->plugin->getConfig()->get("kill-points"));
+			}
 			}
 		}
 	}
