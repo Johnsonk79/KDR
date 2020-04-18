@@ -43,4 +43,8 @@ death-points: 1
 # Note: Must be an integer.
 # Default: 1
 kill-points: 1
+
+# worlds that KDR will work in
+worlds:
+ - pvp
 ...
