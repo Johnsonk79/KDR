@@ -48,6 +48,9 @@ kill-points: 1
 worlds:
  - pvp
  
- # Message sent to the killed player, {player} = name of player, {killer} = name of killer.
+# Message sent to the killed player, {player} = name of player, {killer} = name of killer.
 death-message: §fYou were slain by §c{killer}
+# Message sent to the killer
+kill-message: §aKilled §b%PLAYER%,§6 §l+8§r§6 Coins
+
 ...
